@@ -54,6 +54,19 @@ struct Point<T> {
     y: T,
 }
 
+impl<T> Point<T> {
+    fn x(&self) -> &T {
+        &self.x
+    }
+}
+
+impl Point<i32> {
+    fn i32_only(&self) {
+        println!("the impl Point<i32> function, can only be \
+        called by i32 template.")
+    }
+}
+
 #[derive(Debug)]
 struct Point2<T, U> {
     x: T,
@@ -63,8 +76,22 @@ struct Point2<T, U> {
 fn generic_struct() {
     let both_int = Point {x:5, y:10};
     let both_float = Point{x: 1.0, y:1.0};
-    println!("{:?}, {:?}", both_int, both_float);
+    println!("int point: {:?}, float point:{:?}", both_int, both_float);
+
+    println!("generic function of template");
+    {
+        println!("{}", both_int.x());  // 5
+        println!("{}", both_float.x());  // 1
+    }
+
+    println!("function of specified template type.");
+    {
+        both_int.i32_only();
+
+        // both_float.i32_only();  // error: method not found in `generic_data_type::Point<{float}>`
+    }
+
 
     let two_type_point = Point2{x:1, y:2.2};
-    println!("{:?}", two_type_point);
+    println!("two type point: {:?}", two_type_point);
 }
