@@ -1,7 +1,5 @@
 #![allow(dead_code)]
 
-use std::fmt::format;
-use std::os::unix::raw::time_t;
 use String;
 
 
@@ -40,7 +38,7 @@ trait Summary {
     }
 }
 
-pub fn tests() {
+fn traits_and_impl() {
     println!("two structs implement the trait's function get_title()");
     {
         let blog = Blog {
@@ -80,3 +78,116 @@ pub fn tests() {
         println!("twitter_name:{}", twitter_name);  // username-2
     }
 }
+
+pub fn tests() {
+    // traits_and_impl();
+
+    // traits_as_parameter();
+
+    return_trait_type();
+}
+
+/*
+ every struct that implemented Summary traits get_name() function
+ can be passed to this function.
+ */
+fn get_name_trait(item: &impl Summary) {
+    let item_name = item.get_name();
+    println!("Summary item_name:{}", item_name);
+}
+
+
+/*
+two parameters of two_trait_struct_parameter() can be different struct type.
+e.g: (Blog, Twitter) / (Blog, Blog) / (Twitter, Twitter)
+ */
+fn two_trait_struct_parameter(item1: &impl Summary, item2: &impl Summary) {
+    println!("{},{}", item1.get_name(), item2.get_name());
+}
+
+
+/*
+the two parameters of two_trait_parameter_must_be_the_same() must be the same type.
+e.g: (Blog, Blog) / (Twitter, Twitter)
+ */
+fn two_trait_parameter_must_be_the_same<T: Summary>(item1: &T, item2: &T) {
+    println!("{},{}", item1.get_name(), item2.get_name());
+}
+
+fn traits_as_parameter() {
+    println!("normal one trait parameter.");
+    {
+        let blog = Blog {
+            title: "title-1".to_string(),
+            context: "context-1".to_string(),
+        };
+        get_name_trait(&blog); // default name
+
+        let twitter = Twitter {
+            username: "username-2".to_string(),
+            context: "context-2".to_string(),
+        };
+        get_name_trait(&twitter);  // username-2s
+    }
+
+    println!("\ntwo different struct of traits");
+    {
+        let blog = Blog {
+            title: "title-1".to_string(),
+            context: "context-1".to_string(),
+        };
+
+        let twitter = Twitter {
+            username: "username-2".to_string(),
+            context: "context-2".to_string(),
+        };
+
+        // default name, username-1
+        two_trait_struct_parameter(&blog, &twitter);
+
+        // error: expected `&Blog`, found `&Twitter`
+        // two_trait_parameter_must_be_the_same(&blog, &twitter);
+
+        let blog_2 = Blog {
+            title: "title-3".to_string(),
+            context: "context-3".to_string(),
+        };
+        // default name, default name
+        two_trait_parameter_must_be_the_same(&blog, &blog_2);
+    }
+}
+
+/*
+return traits type
+ */
+fn return_trait_type() {
+    let s1 = return_summary_trait_type(true);
+    let s2 = return_summary_trait_type(false);
+    println!("{},{}", s1.get_title(), s2.get_title());  // title-1, title-2
+}
+
+/*
+if the traits type return function has multiple return expression,
+all return expression must has the same concrete type.
+This is the same as c++11's type deduction.
+ */
+fn return_summary_trait_type(t: bool) -> impl Summary {
+    return if t {
+        Blog {
+            title: "title-1".to_string(),
+            context: "context-1".to_string(),
+        }
+    } else {
+        Blog {
+            title: "title-2".to_string(),
+            context: "context-2".to_string(),
+        }
+
+        // error: `if` and `else` have incompatible types.
+        // Twitter {
+        //     username: "username".to_string(),
+        //     context: "context-twitter".to_string(),
+        // }
+    }
+}
+

@@ -1,6 +1,5 @@
 #![allow(dead_code)]
 
-use crate::syntax::enums::enum_tests;
 
 pub fn extract() {
     largest_number();

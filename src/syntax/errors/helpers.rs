@@ -9,7 +9,8 @@ pub fn result_helpers() {
 
     // expect_helper();
 
-    propagate_error();
+    let result = propagate_error();
+    println!("result:{:?}", result);
 }
 
 fn unwrap_helper() {
