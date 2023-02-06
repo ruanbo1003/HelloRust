@@ -1,7 +1,7 @@
 
 mod examples;
-
 mod syntax;
+mod util;
 
 
 fn main() {
