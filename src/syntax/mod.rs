@@ -14,6 +14,8 @@ mod collections;
 mod errors;
 
 mod generics;
+mod closures;
+
 
 pub fn basic_syntax() {
     // variables::variables();
@@ -40,7 +42,9 @@ pub fn basic_syntax() {
 
     // errors::error_tests();
 
-    generics::tests();
+    // generics::tests();
+
+    closures::tests();
 
     println!("end of rust basic syntax");
 }
