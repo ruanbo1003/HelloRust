@@ -4,7 +4,6 @@ mod data_types;
 mod functions;
 mod comments;
 mod control_flow;
-mod ownerships;
 mod references;
 mod slices;
 
@@ -15,6 +14,8 @@ mod errors;
 
 mod generics;
 mod closures;
+mod smart_pointer;
+mod ownerships;
 
 
 pub fn basic_syntax() {
@@ -44,7 +45,9 @@ pub fn basic_syntax() {
 
     // generics::tests();
 
-    closures::tests();
+    // closures::tests();
+
+    ownerships::tests();
 
     println!("end of rust basic syntax");
 }

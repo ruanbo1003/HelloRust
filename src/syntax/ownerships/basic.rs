@@ -8,6 +8,7 @@ pub fn ownership_tests() {
     // ownership_function();
 
     return_value();
+
 }
 
 fn first_test_with_string() {

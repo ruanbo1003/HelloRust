@@ -1,3 +1,5 @@
+// allow non-snake-case for crate name(HelloRust)
+#![allow(non_snake_case)]
 
 mod examples;
 mod syntax;
