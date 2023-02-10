@@ -79,7 +79,7 @@ pub fn tests() {
 fn cal_string_len(src: &String) -> usize { // src is a reference to a String
     return src.len();
 }  // Here, src goes out of scope. But src is a reference and it does not have ownership of the original string,
-   // it does not drop
+// it does not drop
 
 
 // immutable reference

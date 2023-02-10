@@ -1,14 +1,20 @@
 #![allow(dead_code)]
 
 pub fn ownership_tests() {
+    println_borrow();
+
     // first_test_with_string();
 
     // move_1();
 
     // ownership_function();
 
-    return_value();
+}
 
+fn println_borrow() {
+    let s = String::from("hello");
+    println!("{:?}", s);  // hello
+    println!("{:?}", s);  // hello
 }
 
 fn first_test_with_string() {
@@ -69,31 +75,4 @@ fn take_ownership(str: String) {
 
 fn make_copy(val: i32) {
     println!("make_copy, val:{val}");
-}
-
-/*
- Return value can transfer ownership.
- */
-fn return_value() {
-    {
-        let s = return_value_and_give_ownership();
-        println!("get ownership from return value, s:{s}");  // hello-return
-    }
-
-    {
-        let s1 = String::from("hello-take-and-back");
-        println!("s1:{s1}");
-
-        let s2 = take_ownership_and_give_back(s1);
-        println!("s2:{s2}");
-    }
-}
-fn return_value_and_give_ownership() -> String {
-    let s = String::from("hello-return");
-    println!("s in function:{s}");  // hello-return
-    return s;
-}
-fn take_ownership_and_give_back(src: String) -> String {
-    println!("src in function:{src}");
-    return src;
 }

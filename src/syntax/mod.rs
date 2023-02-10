@@ -4,8 +4,6 @@ mod data_types;
 mod functions;
 mod comments;
 mod control_flow;
-mod references;
-mod slices;
 
 mod structs;
 mod enums;
@@ -30,10 +28,6 @@ pub fn basic_syntax() {
     // control_flow::basic_control_flow();
 
     // ownerships::ownership_tests();
-
-    // references::tests();
-
-    // slices::slices_tests();
 
     // structs::struct_tests();
 

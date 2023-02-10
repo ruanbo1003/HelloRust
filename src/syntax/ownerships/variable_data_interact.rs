@@ -7,7 +7,9 @@ Multiple variables can interact with the same data in different ways.
 pub fn tests() {
     // interact_with_move();
 
-    interact_with_clone();
+    // interact_with_clone();
+
+    stack_only_data_interact_with_copy();
 }
 
 
@@ -46,4 +48,43 @@ fn stack_only_data_interact_with_copy() {
         // i1 still valid after the assignment.
         println!("i1:{}", i1);
     }
+
+    {
+        let item = UserItemNoCopy{count:1, price:1.1};
+        println!("{:?}", item);  // UserItemNoCopy { count: 1, price: 1.1 }
+
+        let item2 = item;
+        println!("{:?}", item2);  // // UserItemNoCopy { count: 1, price: 1.1 }
+
+        // error
+        // println("{:?}", item)  // Use of moved value
+    }
+
+    {
+        let item1 = UserItemWithCopy{count:2, price:2.2};
+        println!("{:?}", item1);  // UserItemWithCopy { count: 2, price: 2.2 }
+
+        let item2 = item1;
+        println!("{:?}", item2);  // UserItemWithCopy { count: 2, price: 2.2 }
+
+        // the struct `UserItemWithCopy` has a marker `Clone` and `Copy`.
+        // so after declare `item2` and assign `item1` to `item2`,  `item1` is still valid.
+        println!("{:?}", item1)  // UserItemWithCopy { count: 2, price: 2.2 }
+    }
+}
+
+
+#[derive(Debug)]
+struct UserItemNoCopy {
+    count: i32,
+    price: f32,
+}
+
+#[derive(Copy, Clone, Debug)]
+struct UserItemWithCopy {
+    count: i32,
+    price: f32,
+
+    // error if the struct has a `String` member variable
+    // name: String,  // this field does not implement 'Copy'
 }
