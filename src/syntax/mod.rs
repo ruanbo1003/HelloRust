@@ -4,8 +4,6 @@ mod data_types;
 mod functions;
 mod comments;
 mod control_flow;
-mod references;
-mod slices;
 
 mod structs;
 mod enums;
@@ -16,6 +14,7 @@ mod generics;
 mod closures;
 mod smart_pointer;
 mod ownerships;
+mod string_and_slice;
 
 
 pub fn basic_syntax() {
@@ -31,10 +30,6 @@ pub fn basic_syntax() {
 
     // ownerships::ownership_tests();
 
-    // references::tests();
-
-    // slices::slices_tests();
-
     // structs::struct_tests();
 
     // enums::enum_tests();
@@ -43,11 +38,15 @@ pub fn basic_syntax() {
 
     // errors::error_tests();
 
-    // generics::tests();
+    generics::tests();
 
     // closures::tests();
 
-    ownerships::tests();
+    // ownerships::tests();
+
+    // structs::tests();
+
+    // string_and_slice::tests();
 
     println!("end of rust basic syntax");
 }

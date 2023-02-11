@@ -2,4 +2,5 @@
 
 mod math;
 mod unit_test;
+pub mod variable;
 

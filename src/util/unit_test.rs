@@ -5,8 +5,8 @@ mod tests {
     #[test]
     fn equal_test() {
         // use assert! micro
-        assert!(1 == 1);
-        assert!(true == true);
+        assert_eq!(1, 1);
+        assert_eq!(true, true);
 
         // use assert_eq! micro
         assert_eq!(1, 1);

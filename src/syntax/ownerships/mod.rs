@@ -3,7 +3,9 @@
 mod basic;
 mod variable_data_interact;
 mod ownership_with_function;
-mod ownership_with_return_value;
+mod ownership_and_scope;
+mod references;
+mod slices;
 
 
 pub fn tests() {
@@ -13,5 +15,9 @@ pub fn tests() {
 
     // ownership_with_function::tests();
 
-    ownership_with_return_value::tests();
+    // ownership_and_scope::tests();
+
+    // references::tests();
+
+    slices::tests();
 }
