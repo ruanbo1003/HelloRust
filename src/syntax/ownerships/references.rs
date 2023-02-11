@@ -86,7 +86,6 @@ fn cal_string_len(src: &String) -> usize { // src is a reference to a String
 fn immutable_reference_and_update(_src: &String) {
     // Cannot borrow immutable local variable `src` as mutable
     // src.push_str(", world");  // error
-
 }
 
 fn mutable_reference_and_update(src: &mut String) {

@@ -12,5 +12,5 @@ pub fn enum_tests() {
 
     // enum_match::tests();
 
-    if_let::tests();
+    // if_let::tests();
 }
