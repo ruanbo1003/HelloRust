@@ -2,12 +2,33 @@
 
 use String;
 
+pub fn tests() {
+    traits_and_impl();
+
+    traits_as_parameter();
+
+    // return_trait_type();
+}
+
+
+// Define a trait named `Summary`
+trait Summary {
+    // trait function without default implementation
+    fn get_title(&self) -> String;
+
+    // trait function with default implementation
+    fn  get_name(&self) -> String {
+        return String::from("default name");
+    }
+}
 
 struct Blog {
     pub title: String,
     pub context: String,
 }
 
+// implement trait `Summary` for Blog
+// the trait function `get_name()` not implemented here.
 impl Summary for Blog {
     fn get_title(&self) -> String {
         return format!("Blog:{}", self.title);
@@ -20,6 +41,7 @@ struct Twitter {
     pub context: String,
 }
 
+// implement trait `Summary` for Twitter.
 impl Summary for Twitter {
     fn get_title(&self) -> String {
         return format!("Twitter:{}", self.username);
@@ -30,13 +52,7 @@ impl Summary for Twitter {
     }
 }
 
-trait Summary {
-    fn get_title(&self) -> String;
 
-    fn  get_name(&self) -> String {
-        return String::from("default name");
-    }
-}
 
 fn traits_and_impl() {
     println!("two structs implement the trait's function get_title()");
@@ -79,13 +95,6 @@ fn traits_and_impl() {
     }
 }
 
-pub fn tests() {
-    // traits_and_impl();
-
-    // traits_as_parameter();
-
-    return_trait_type();
-}
 
 /*
  every struct that implemented Summary traits get_name() function
