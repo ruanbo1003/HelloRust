@@ -15,6 +15,7 @@ mod closures;
 mod smart_pointer;
 mod ownerships;
 mod string_and_slice;
+mod lifetime;
 
 
 pub fn basic_syntax() {
@@ -38,7 +39,9 @@ pub fn basic_syntax() {
 
     // errors::error_tests();
 
-    generics::tests();
+    // generics::tests();
+
+    lifetime::tests();
 
     // closures::tests();
 
