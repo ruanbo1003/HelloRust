@@ -24,7 +24,26 @@ println!("r:{}", r);
 * the variable's valid-scope must bigger than the variable reference's scopy.
 
 
- 
+## lifetime elision rules
+* input lifetimes & output lifetimes
+  - function or member function's argument lifetime is called `input lifetimes`.
+  - lifetime of return value is called `output lifetimes`.
+* three roles of lifetime-elision
+  1. Every reference parameter has its own lifetime parameter. For example, function foo has one reference parameter,
+  than it has one lifetime parameter, function bar has two reference parameters, than it has two lifetime parameters.
+  And so on.
+      ```rust
+      fn foo(s: &str, i: i32) {}
+      fn bar(s1: &str, s2: &str, i: i32){}
+       ```
+  2. If a function has one input-lifetime parameter, then all its output-lifetime is the same as input-lifetime.
+      ```rust
+       fn foo(s: &str) -> &str {}
+       fn foo_2<'a>(s: &'a str) -> &'a str {}
+     ```
+  3. if a struct method has multiple input-lifetime, and one of them is `&self` or `&mut self`,
+     than all output-lifetime is assigned by the lifetime of `self`.
+
 
 
 

@@ -1,3 +1,4 @@
+#![allow(unused_assignments)]
 
 pub fn tests() {
     // use lifetime-annotation
@@ -92,7 +93,7 @@ fn lifetime_cases() {
             // error: `s2` does not live long enough.
             // Notice that, the error info says `s2`, not `s1`, even though the `longest` is `s1`
             // in this case.
-            println!("longest:{}", longest);  // borrowed later used here.
+            // println!("longest:{}", longest);  // borrowed later used here.
         }
 
     }
