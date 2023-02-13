@@ -41,9 +41,9 @@ pub fn basic_syntax() {
 
     // generics::tests();
 
-    lifetime::tests();
+    // lifetime::tests();
 
-    // closures::tests();
+    closures::tests();
 
     // ownerships::tests();
 

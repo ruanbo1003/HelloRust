@@ -3,9 +3,9 @@
 pub fn tests() {
     // closure_capture_example();
 
-    // three_kinds_of_captures();
+    three_kinds_of_captures();
 
-    force_move_capture();
+    // force_move_capture();
 }
 
 fn closure_capture_example() {
@@ -30,27 +30,37 @@ fn closure_capture_example() {
 }
 
 fn three_kinds_of_captures() {
-    // FnOnce: can only be call once.
+    // FnOnce: `once` means the closure cannot capture the environment's variable ownership more
+    // than once. can only be call once.
     {
 
     }
 
     // FnMut: not-move capture, can change the environment's variable.
     {
-        let x = 1;
+        let mut x = 1;
 
         // closure `equal_to_x` captured the environment's variable x,
         // and only read the x.
-        let equal_to_x = |z| z == x;
+        let mut equal_to_x = |z|{ x=10; z == x};
 
         let a = 1;
-        println!("a is equal to x:{}", equal_to_x(a));  // true
+        println!("a is equal to x:{}", equal_to_x(a));  // false
 
-        let b = 2;
-        println!("b is equal to x:{}", equal_to_x(b));  // false
+        let b = 10;
+        println!("b is equal to x:{}", equal_to_x(b));  // true
+
+        println!("{}", x);  // 10
     }
 
     // Fn: capture the environment's variable, and can't change the value.
+    {
+        let x = 1;
+        let equal_to_x = |y| y == x;
+
+        let a = 1;
+        println!("{}", equal_to_x(a));  // true
+    }
 }
 
 fn force_move_capture() {
