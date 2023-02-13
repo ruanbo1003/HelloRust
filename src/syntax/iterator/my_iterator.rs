@@ -15,6 +15,15 @@ pub fn tests() {
         println!("{:?}", counter.next());  // None
         println!("{:?}", counter.next());  // None
     }
+
+    // test my Counter iterator with for.
+    {
+        let counter = Counter::new();
+        for each in counter {
+            print!("{} ", each);
+        }  // 1 2 3 4 5
+        println!();
+    }
 }
 
 struct Counter {

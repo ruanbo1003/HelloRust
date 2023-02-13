@@ -12,6 +12,7 @@ mod errors;
 
 mod generics;
 mod closures;
+mod iterator;
 mod smart_pointer;
 mod ownerships;
 mod string_and_slice;
@@ -44,6 +45,8 @@ pub fn basic_syntax() {
     // lifetime::tests();
 
     closures::tests();
+
+    iterator::tests();
 
     // ownerships::tests();
 
