@@ -1,9 +1,9 @@
 #![allow(dead_code, unused_variables)]
 
 pub fn tests() {
-    // basic_usage_of_iterator();
+    basic_usage_of_iterator();
 
-    use_iterator();
+    // use_iterator();
 }
 
 fn basic_usage_of_iterator() {

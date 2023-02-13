@@ -2,8 +2,6 @@
 
 mod basic;
 mod closure_capture;
-mod iterators;
-mod my_iterator;
 
 
 pub fn tests() {
@@ -12,11 +10,8 @@ pub fn tests() {
 
     // function_and_closure();
 
-    closure_capture::tests();
+    // closure_capture::tests();
 
-    // iterators::tests();
-
-    // my_iterator::tests();
 }
 
 
