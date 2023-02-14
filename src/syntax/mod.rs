@@ -44,15 +44,17 @@ pub fn basic_syntax() {
 
     // lifetime::tests();
 
-    closures::tests();
+    // closures::tests();
 
-    iterator::tests();
+    // iterator::tests();
 
     // ownerships::tests();
 
     // structs::tests();
 
     // string_and_slice::tests();
+
+    smart_pointer::tests();
 
     println!("end of rust basic syntax");
 }
