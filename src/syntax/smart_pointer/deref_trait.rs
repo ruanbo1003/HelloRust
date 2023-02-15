@@ -1,8 +1,10 @@
 
 pub fn tests() {
-    regular_reference();
+    // regular_reference();
 
-    use_box_like_reference();
+    // use_box_like_reference();
+
+    my_box_test();
 }
 
 fn regular_reference() {
@@ -31,8 +33,7 @@ fn use_box_like_reference() {
     }
 }
 
-// implement MyBox
-
+// implement MyBox: begin
 // one element tuple struct.
 struct MyBox<T>(T);
 
@@ -57,6 +58,29 @@ fn my_box_test() {
 
         // error: type `MyBox<{integer}>` cannot be de-referenced.
         // implement std::ops::Deref for MyBox to solve this problem
-        println!("{}, {}", x, *y);
+        println!("{}, {}", x, *y);  // 10, 10
     }
+
+    // deref coercions
+    {
+        let m = MyBox::new(String::from("Rust"));
+
+        // deref from &string to &str.
+        // this is valid, because the the String trait has a deref to &str.
+        hello_str(&m);  // Hello, Rust!
+    }
+
+    // without deref coercions
+    {
+        let m = MyBox::new(String::from("Rust"));
+        hello_str(&(*m)[..]);
+
+        let s = &(*m)[..];
+        println!("{}", s);  // Rust
+    }
+}
+// implement MyBox: end
+
+fn hello_str(name: &str) {
+    println!("Hello, {}!", name);
 }
