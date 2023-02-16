@@ -1,6 +1,6 @@
+#![allow(dead_code)]
 
 mod variables;
-mod data_types;
 mod functions;
 mod comments;
 mod control_flow;
@@ -17,12 +17,13 @@ mod smart_pointer;
 mod ownerships;
 mod string_and_slice;
 mod lifetime;
+mod format;
 
 
 pub fn basic_syntax() {
-    // variables::variables();
+    // format::tests();
 
-    // data_types::data_types();
+    variables::tests();
 
     // functions::basic_functions();
 
@@ -34,7 +35,7 @@ pub fn basic_syntax() {
 
     // structs::struct_tests();
 
-    // enums::enum_tests();
+    // enums::tests();
 
     // collections::tests();
 
@@ -54,7 +55,7 @@ pub fn basic_syntax() {
 
     // string_and_slice::tests();
 
-    smart_pointer::tests();
+    // smart_pointer::tests();
 
     println!("end of rust basic syntax");
 }

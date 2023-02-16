@@ -1,6 +1,5 @@
-#![allow(dead_code)]
 
-pub fn data_types() {
+pub fn tests() {
     // Scalar Types
     {
         data_types_integer();
