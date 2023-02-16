@@ -2,10 +2,11 @@
 
 
 pub fn tests() {
-    define_and_declare();
+    // define_and_declare();
 
-    many_types_enum();
+    // many_types_enum();
 
+    c_style_enum();
 }
 
 enum IpAddrKind {
@@ -61,4 +62,19 @@ fn many_types_enum() {
 
     let c = Message::ChangeColor(1, 2, 3);
     c.call();
+}
+
+// C style enum
+#[derive(Debug)]
+enum Number {
+    Red = 0,
+    Green = 1,
+    Yellow = 2,
+}
+fn c_style_enum() {
+    let n1 = Number::Red;
+    println!("{:?}", n1);  // Red
+
+    let n2 = Number::Green;
+    println!("{}", n2 as i32);
 }

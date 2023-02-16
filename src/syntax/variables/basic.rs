@@ -1,7 +1,5 @@
-#![allow(dead_code)]
-#![allow(unused_variables)]
 
-pub fn variables() {
+pub fn tests() {
     // default variable if immutable
     let v1 = 1;
     println!("value of v1 is {v1}");
