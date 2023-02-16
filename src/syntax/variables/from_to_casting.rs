@@ -1,8 +1,11 @@
+use std::fmt::{Display, Formatter};
 
 pub fn tests() {
     // from_into();
 
-    try_from_try_into();
+    // try_from_try_into();
+
+    to_string();
 }
 
 fn from_into() {
@@ -58,4 +61,35 @@ fn try_from_try_into() {
 
     let res2: Result<Number, ()> = (-1i32).try_into();
     println!("{:?}", res2); // Err(())
+}
+
+
+/*
+implement `ToString` trait for the to_string() function.
+but we'd better use the `std::fmt::Display` trait.
+ */
+fn to_string() {
+    struct Circle {
+        data: i32,
+    }
+    impl ToString for Circle {
+        fn to_string(&self) -> String {
+            format!("Circle data:{}", self.data)
+        }
+    }
+
+    struct Circle2 {
+        data: i32,
+    }
+    impl Display for Circle2 {
+        fn fmt(&self, f: &mut Formatter<'_>) -> std::fmt::Result {
+            write!(f, "Circle2 data(display):{}", self.data)
+        }
+    }
+
+    let c1 = Circle{data: 1};
+    println!("{}", c1.to_string());  // Circle data:1
+
+    let c2 = Circle2{data: 2};
+    println!("{}", c2);  // Circle2 data(display):2
 }
