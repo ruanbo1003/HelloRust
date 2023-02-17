@@ -7,6 +7,7 @@ mod type_casting;
 mod size_of;
 mod alias;
 mod from_to_casting;
+mod parse_string_to_number;
 
 pub fn tests() {
     // basic::tests();
@@ -17,9 +18,11 @@ pub fn tests() {
 
     // type_casting::tests();
 
-    from_to_casting::tests();
-
     // size_of::tests();
 
     // alias::tests();
+
+    // from_to_casting::tests();
+
+    parse_string_to_number::tests();
 }

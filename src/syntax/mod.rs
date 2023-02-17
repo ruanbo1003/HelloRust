@@ -23,13 +23,13 @@ mod format;
 pub fn basic_syntax() {
     // format::tests();
 
-    variables::tests();
+    // variables::tests();
 
     // functions::basic_functions();
 
     // comments::comments();
 
-    // control_flow::basic_control_flow();
+    control_flow::tests();
 
     // ownerships::ownership_tests();
 
