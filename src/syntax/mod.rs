@@ -21,6 +21,8 @@ mod format;
 
 
 pub fn basic_syntax() {
+    closures::tests();
+
     // format::tests();
 
     // variables::tests();
@@ -29,7 +31,7 @@ pub fn basic_syntax() {
 
     // comments::comments();
 
-    control_flow::tests();
+    // control_flow::tests();
 
     // ownerships::ownership_tests();
 
@@ -44,8 +46,6 @@ pub fn basic_syntax() {
     // generics::tests();
 
     // lifetime::tests();
-
-    // closures::tests();
 
     // iterator::tests();
 

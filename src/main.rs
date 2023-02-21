@@ -6,12 +6,16 @@ extern crate core;
 mod examples;
 mod syntax;
 mod util;
+mod exercise;
+mod stds;
 
 
 fn main() {
     // examples::run_examples();
 
-    syntax::basic_syntax();
+    // syntax::basic_syntax();
+
+    stds::tests();
 
     // exercise::tests();
 

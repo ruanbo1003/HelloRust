@@ -2,6 +2,8 @@
 
 mod basic;
 mod closure_capture;
+mod closure_as_parameter;
+mod closure_as_return_value;
 
 
 pub fn tests() {
@@ -12,6 +14,9 @@ pub fn tests() {
 
     // closure_capture::tests();
 
+    // closure_as_parameter::tests();
+
+    closure_as_return_value::tests();
 }
 
 

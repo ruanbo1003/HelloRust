@@ -30,39 +30,58 @@ fn closure_capture_example() {
 }
 
 fn three_kinds_of_captures() {
-    // FnOnce: `once` means the closure cannot capture the environment's variable ownership more
-    // than once. can only be call once.
-    {
-
+    #[derive(Debug)]
+    struct Capture {
+        data: i32,
     }
 
-    // FnMut: not-move capture, can change the environment's variable.
+    // `&T` capture: immutable reference capture
     {
-        let mut x = 1;
+        let c = Capture { data: 1 };
+        let print = || { println!("{:?}", c); };
+        print();  // Capture { data: 1 }
 
-        // closure `equal_to_x` captured the environment's variable x,
-        // and only read the x.
-        let mut equal_to_x = |z|{ x=10; z == x};
+        let _borrow = &c;  // immutable reference here
 
-        let a = 1;
-        println!("a is equal to x:{}", equal_to_x(a));  // false
-
-        let b = 10;
-        println!("b is equal to x:{}", equal_to_x(b));  // true
-
-        println!("{}", x);  // 10
+        // after immutable reference, print() is still valid.
+        print();  // Capture { data: 1 }
     }
 
-    // Fn: capture the environment's variable, and can't change the value.
+    // `&mut T` capture: mutable reference capture
     {
-        let x = 1;
-        let equal_to_x = |y| y == x;
+        let mut count = 0;
+        let mut inc = || {
+            count += 1;
+            println!("count:{}", count);
+        };
 
-        let a = 1;
-        println!("{}", equal_to_x(a));  // true
+        inc();  // count:1
+
+        // error
+        // let mut _borrow = &count;
+
+        inc();
+    }
+
+    // `T` capture: value capture
+    {
+        let b = Box::new(1);
+
+        // closure cannot be invoked more than once because it moves the variable `b` out of its environment.
+        let consume = || {
+            println!("b: {:?}", b);
+            std::mem::drop(b);
+        };
+
+        // this value implements `FnOnce`, which causes it to be moved when called.
+        consume();  // b: 1
+
+        // error: use of moved value: `consume`
+        // consume();  // error
     }
 }
 
+// add `move` before `||` to force move.
 fn force_move_capture() {
     let x = vec![1, 2, 3];
     let equal_to_x = move |z| z == x;
@@ -71,6 +90,30 @@ fn force_move_capture() {
     // println!("x after closure:{:?}", x);
 
     let y = vec![1, 2, 3];
-
     println!("x == y:{}", equal_to_x(y));
+
+    {
+        #[derive(Debug)]
+        struct ForceMove {
+            data: i32,
+        }
+
+        // normal move, fm is valid after print_fm();
+        {
+            let fm = ForceMove{ data: 1 };
+            let print_fm = || { println!("{:?}", fm); };
+            print_fm();  // ForceMove { data: 1 }
+            println!("{:?}", fm);  // ForceMove { data: 1 }
+        }
+
+        // force move, fm is not valid after print_fm();
+        {
+            let fm = ForceMove { data: 1 };
+            let print_fm = move || { println!("{:?}", fm); };
+            print_fm();
+
+            // error: borrowed of moved value: `fm`
+            // println!("{:?}", fm);  // error
+        }
+    }
 }
