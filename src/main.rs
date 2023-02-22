@@ -13,9 +13,9 @@ mod stds;
 fn main() {
     // examples::run_examples();
 
-    // syntax::basic_syntax();
+    syntax::basic_syntax();
 
-    stds::tests();
+    // stds::tests();
 
     // exercise::tests();
 

@@ -21,7 +21,9 @@ mod format;
 
 
 pub fn basic_syntax() {
-    closures::tests();
+    // closures::tests();
+
+    generics::tests();
 
     // format::tests();
 
@@ -42,8 +44,6 @@ pub fn basic_syntax() {
     // collections::tests();
 
     // errors::error_tests();
-
-    // generics::tests();
 
     // lifetime::tests();
 
