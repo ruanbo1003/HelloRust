@@ -29,12 +29,16 @@ pub fn tests() {
         // the generic type of p1 is: i32
         let p1 = Point{x:1, y:1};
         p1.bar();  // Point::bar
+        p1.i32_only();
+
+        p1.foo();  // can call `foo` too.
 
         // the generic type of _p2 is: f64
-        let _p2 = Point{x:2.2, y:2.2};
+        let p2 = Point{x:2.2, y:2.2};
         // error: no method named `bar` for struct `generic_struct::Point<{float}>` int the
         // current scope.
         // p2.bar();  // error:
+        p2.f64_only();  // f64_only
     }
 
     // generic struct of two type
@@ -63,12 +67,17 @@ impl<T> Point<T> {
 
 impl Point<i32> {
     fn i32_only(&self) {
-        println!("the impl Point<i32> function, can only be \
-        called by i32 template.")
+        println!("i32_only")
     }
 
     fn bar(&self) {
         println!("Point::bar")
+    }
+}
+
+impl Point<f64> {
+    fn f64_only(&self) {
+        println!("f64_only");
     }
 }
 

@@ -17,7 +17,7 @@ trait Summary {
     fn get_title(&self) -> String;
 
     // trait function with default implementation
-    fn  get_name(&self) -> String {
+    fn get_name(&self) -> String {
         return String::from("default name");
     }
 }
