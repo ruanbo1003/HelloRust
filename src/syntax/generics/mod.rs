@@ -7,6 +7,7 @@ mod traits;
 mod trait_bound_parameter;
 mod trait_bound_return;
 mod generic_trait;
+mod empty_and_multiple_trait_bound;
 
 pub fn tests() {
     // extract_code::extract();
@@ -21,5 +22,7 @@ pub fn tests() {
 
     // trait_bound_return::tests();
 
-    generic_trait::tests();
+    // generic_trait::tests();
+
+    empty_and_multiple_trait_bound::tests();
 }
