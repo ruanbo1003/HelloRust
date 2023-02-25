@@ -8,7 +8,9 @@ instead of value(T)
 pub fn tests() {
     // compare_of_move_and_borrow();
 
-    mutable_reference();
+    // mutable_reference();
+
+    ref_borrow();
 }
 
 fn compare_of_move_and_borrow() {
@@ -68,5 +70,46 @@ fn mutable_reference() {
         // mutable borrow of mutable variable: OK
         mutable_borrow_book(&mut book);
     }
+}
 
+fn ref_borrow() {
+    #[derive(Debug)]
+    struct Point {
+        x: i32,
+        y: i32,
+    }
+
+    // `ref val` equals `&val`
+    {
+        let c = 'a';
+        let ref ref_c1 = c;
+        let ref_c2 = &c;
+
+        println!("{}, {}", ref_c1, ref_c2);
+    }
+
+    // destruct struct
+    {
+        let point = Point {
+            x: 1,
+            y: 2,
+        };
+
+        let _copy_of_x = {
+            let Point{x: ref ref_to_x, y: _} = point;
+            *ref_to_x
+        };
+    }
+
+    {
+        let mut mutable_tuple = (Box::new(1), 2);
+        println!("{:?}", mutable_tuple);  // (1, 2)
+
+        {
+            let (_, ref mut second) = mutable_tuple;
+            *second = 10;
+
+            println!("{:?}", mutable_tuple);  // (1, 10)
+        }
+    }
 }
