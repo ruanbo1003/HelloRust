@@ -9,6 +9,7 @@ mod scope;
 mod util;
 mod exercise;
 mod stds;
+mod concurrency;
 
 
 fn main() {
@@ -16,9 +17,11 @@ fn main() {
 
     // syntax::basic_syntax();
 
-    scope::tests();
+    // scope::tests();
 
     // stds::tests();
+
+    concurrency::tests();
 
     // exercise::tests();
 
