@@ -2,9 +2,12 @@
 
 mod threads;
 mod channels;
+mod mutex;
 
 pub fn tests() {
     // threads::tests();
 
-    channels::tests();
+    // channels::tests();
+
+    mutex::tests();
 }
