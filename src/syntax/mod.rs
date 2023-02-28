@@ -18,12 +18,15 @@ mod ownerships;
 mod string_and_slice;
 mod lifetime;
 mod format;
+mod oop;
 
 
-pub fn basic_syntax() {
+pub fn tests() {
     // closures::tests();
 
-    generics::tests();
+    // generics::tests();
+
+    oop::tests();
 
     // format::tests();
 

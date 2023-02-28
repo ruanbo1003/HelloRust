@@ -15,13 +15,13 @@ mod concurrency;
 fn main() {
     // examples::run_examples();
 
-    // syntax::basic_syntax();
+    syntax::tests();
 
     // scope::tests();
 
     // stds::tests();
 
-    concurrency::tests();
+    // concurrency::tests();
 
     // exercise::tests();
 
