@@ -19,6 +19,7 @@ mod string_and_slice;
 mod lifetime;
 mod format;
 mod oop;
+mod pattern;
 
 
 pub fn tests() {
@@ -26,7 +27,9 @@ pub fn tests() {
 
     // generics::tests();
 
-    oop::tests();
+    // oop::tests();
+
+    pattern::tests();
 
     // format::tests();
 
