@@ -11,7 +11,7 @@ pub fn is_equal<T: std::cmp::PartialEq>(a: T, b: T) -> bool {
 
 /*
 unit tests.
-create a tests mod in each mod you want test / in each source file you want test.
+create a tests guess_game in each guess_game you want test / in each source file you want test.
 `use super::*` to access all ancestor's function.
  */
 mod tests {
