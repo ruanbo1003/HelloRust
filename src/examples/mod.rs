@@ -4,7 +4,7 @@
 mod guess_game;
 
 pub fn run_examples() {
-    guess_game::play_guess_number_game();
+    guess_game::tests();
 
     println!("end of examples")
 }
